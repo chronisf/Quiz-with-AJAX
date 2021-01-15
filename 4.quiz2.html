@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+<meta charset="UTF-8" />
+<title>AJAX calls xml</title>
+
+
+<script>
+function display(word)
+{
+if (word.length==0) { 
+    document.getElementById("show_char").innerHTML="";
+    return;
+} else {
+    var xmlhttp=new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function() {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            document.getElementById("show_char").innerHTML=xmlhttp.responseText;
+        }
+    }
+    xmlhttp.open("GET","quiz2.php?q="+word,true);
+    xmlhttp.send();
+}    
+}
+
+</script>
+</head>
+<body style="background-color:blue;color:red">
+
+
+<form action=""> 
+Βρείτε τον αριθμό <input type="text"  onkeyup="display(this.value)">
+</form>
+
+<p id="show_char"> </p> 
+
+</body>
+</html>

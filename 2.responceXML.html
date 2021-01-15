@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+<meta charset="UTF-8" />
+<title>AJAX calls xml</title>
+<script>
+function loadxml()
+{
+var req;
+if (window.XMLHttpRequest)
+  {
+  req=new XMLHttpRequest();
+  }
+else
+  {
+  req=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+req.onreadystatechange=function()
+  
+  
+  {
+  if (req.readyState==4 && req.status==200)
+    {
+    xmlDoc=req.responseXML;
+    txt="";
+    x=xmlDoc.getElementsByTagName("name");
+    for (i=0;i<x.length;i++)
+      {
+      txt=txt + x[i].childNodes[0].nodeValue + "<br>";
+      }
+    document.getElementById("div1").innerHTML=txt;
+    }
+  } 
+   
+req.open("GET","ajax2.xml",true);
+req.send();
+}
+</script>
+</head>
+<body style="background-color:grey;color:yellow;">
+<h1>Δεδομένα από XML</h1>
+<div id="div1"><h1>Σελίδα με AJAX που καλεί text file</h1></div>
+<button type="button" onclick="loadxml()">Πατήστε για να εμφανιστεί το περιεχόμενο από ajax.xml</button><br>
+</body>
+</html>

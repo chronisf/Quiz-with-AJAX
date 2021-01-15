@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+<meta charset="UTF-8" />
+<title>AJAX calls text</title>
+<script>
+function loadtext()
+{
+var req;
+if (window.XMLHttpRequest)
+  {
+  req=new XMLHttpRequest();
+  }
+else
+  {
+  req=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+req.onreadystatechange=function()
+  {
+  if (req.readyState==4 && req.status==200)
+    {
+    document.getElementById("div1").innerHTML=req.responseText;
+    document.getElementById("div2").innerHTML=req.readyState;
+    document.getElementById("div3").innerHTML=req.status;
+    }
+  }
+req.open("GET","ajax.txt",true);
+req.send();
+}
+</script>
+</head>
+<body style="background-color:grey;color:yellow;">
+<div id="div1"><h1>Σελίδα με AJAX που καλεί text file</h1></div>
+<div id="div2"><h1>State</h1></div>
+<div id="div3"><h1>Status</h1></div>
+<button type="button" onclick="loadtext()">Πατήστε για να εμφανιστεί το περιεχόμενο από ajax.txt</button><br>
+</body>
+</html>

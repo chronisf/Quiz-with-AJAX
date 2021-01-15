@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+<meta charset="UTF-8" />
+<title>AJAX </title>
+    <script language = "javascript">
+      
+      if (window.XMLHttpRequest) 
+	  {
+        req = new XMLHttpRequest();
+      } 
+	  else if (window.ActiveXObject)
+	  {
+        req = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+
+      function topio(name,photo) 
+      { 
+        if(req) {
+          var x= document.getElementById(photo); 
+          req.open("GET", name); 
+
+          req.onreadystatechange = function() 
+          { 
+            if (req.readyState == 4 && req.status == 200) { 
+                x.innerHTML = req.responseText; 
+            } 
+          } 
+
+          req.send(null); 
+        }
+      }
+    </script>
+  </head> 
+
+  <body style="background-color:cyan;color:red;">
+
+    <h1>Πατήστε επάνω στη φωτογραφία για περιγραφή<h1>
+
+    <img src="pilio.jpg" width="200" height="200" onclick="topio('pilio.txt', 'perigrafi')">
+
+    <img src="neraidoxori.jpg" width="200" height="200" onclick="topio('neraidoxori.txt', 'perigrafi')">
+
+    <img src="plastira.jpg" width="200" height="200"  onclick="topio('plastira.txt', 'perigrafi')">
+
+    <div id="perigrafi">
+      <p>Ελληνικά τοπία</p> 
+    </div> 
+
+  </body> 
+</html>
